@@ -48,6 +48,7 @@ public class Player {
      * Note that if you start a chain with matching colors it should continue with the same type of match
      * and if you start a chain with matching values it should continue with the same type of match
      * use the different values canFormChainWith method returns.
+     * Yusuf, Daib
      */
     public int findLongestChainOf(Tile t) {
         int tilePosition;
@@ -75,6 +76,7 @@ public class Player {
 
     /*
      * TODO: removes and returns the tile in given index
+     * Anil
      */
     public Tile getAndRemoveTile(int index) {
         return null;
@@ -84,6 +86,7 @@ public class Player {
      * TODO: adds the given tile at the end of playerTiles array, should also
      * update numberOfTiles accordingly. Make sure the player does not try to
      * have more than 15 tiles at a time
+     * Anil
      */
     public void addTile(Tile t) {
 
@@ -97,6 +100,7 @@ public class Player {
      * 3Y 3Y 6Y 7Y 1B 2B 3B 3B 10R 11R 12R 2K 4K 5K
      * you can use compareToColorFirst method in Tile class for comparing
      * you are allowed to use Collections.sort method
+     * Habil
      */
     public void sortTilesColorFirst() {
         
@@ -110,6 +114,7 @@ public class Player {
      * 1B 2B 2K 3Y 3Y 3B 3B 4K 5K 6Y 7Y 10R 11R 12R
      * you can use compareToValueFirst method in Tile class for comparing
      * you are allowed to use Collections.sort method
+     * Habil
      */
     public void sortTilesValueFirst() {
 

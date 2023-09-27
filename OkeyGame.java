@@ -66,14 +66,15 @@ public class OkeyGame {
 
     /*
      * TODO: should randomly shuffle the tiles array before game starts
+     * Daib
      */
     public void shuffleTiles() {
-        for (int i = 0; i < tiles.length; i++) {
-            int j = (int)(Math.random() * tiles.length); 
-            int temp = tiles[i].value; 
-            tiles[i] = tiles[j];
-            tiles[j].value = temp;
-        }
+        // for (int i = 0; i < tiles.length; i++) {
+        //     int j = (int)(Math.random() * tiles.length); 
+        //     int temp = tiles[i].value; 
+        //     tiles[i] = tiles[j];
+        //     tiles[j].value = temp;
+        // }
     }
 
     /*
@@ -87,17 +88,20 @@ public class OkeyGame {
      * The given cases do not cover all the winning hands based on the original
      * game and for some rare cases it may be erroneous but it will be enough
      * for this simplified version
+     * Daib
      */
     public boolean didGameFinish() {
         return false;
     }
 
     /*
+
      * TODO: Pick a tile for the current computer player using one of the following:
      * - picking from the tiles array using getTopTile()
      * - picking from the lastDiscardedTile using getLastDiscardedTile()
      * You may choose randomly or consider if the discarded tile is useful for
      * the current status. Print whether computer picks from tiles or discarded ones.
+     * Isa
      */
     public void pickTileForComputer() {
 
@@ -110,6 +114,7 @@ public class OkeyGame {
      * then choose the tile with the lowest chain length and discard it
      * this method should print what tile is discarded since it should be
      * known by other players
+     * Isa
      */
     public void discardTileForComputer() {
 
@@ -119,6 +124,7 @@ public class OkeyGame {
      * TODO: discards the current player's tile at given index
      * this should set lastDiscardedTile variable and remove that tile from
      * that player's tiles
+     * Yusuf
      */
     public void discardTile(int tileIndex) {
 
