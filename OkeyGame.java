@@ -1,3 +1,9 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Random;
+
 public class OkeyGame {
 
     Player[] players;
@@ -6,6 +12,7 @@ public class OkeyGame {
     Tile lastDiscardedTile;
 
     int currentPlayerIndex = 0;
+    int last = 0;
 
     public OkeyGame() {
         players = new Player[4];
@@ -39,6 +46,7 @@ public class OkeyGame {
             }
         }
         players[0].addTile(tiles[56]);
+        last++;
     }
 
     /*
@@ -65,20 +73,27 @@ public class OkeyGame {
     }
 
     /*
-     * TODO: should randomly shuffle the tiles array before game starts
+     * TODO:--DONE--should randomly shuffle the tiles array before game starts
      * Daib
+     *      * Done!!! But take a look please
+
      */
-    public void shuffleTiles() {
-        // for (int i = 0; i < tiles.length; i++) {
-        //     int j = (int)(Math.random() * tiles.length); 
-        //     int temp = tiles[i].value; 
-        //     tiles[i] = tiles[j];
-        //     tiles[j].value = temp;
-        // }
+    public void shuffleTiles(){
+        ArrayList<Tile> copy = new ArrayList<>(Arrays.asList(tiles));
+        Collections.shuffle(copy);
+        //System.out.println(copy);
+        
+        for ( int i = 0; i < copy.size(); i++)
+        {
+            tiles[i] = copy.get(i);
+        } 
+        System.out.println(Arrays.toString(tiles));
+
+       
     }
 
     /*
-     * TODO: check if game still continues, should return true if current player
+     * TODO:--DONE--check if game still continues, should return true if current player
      * finished the game. Use calculateLongestChainPerTile method to get the
      * longest chains per tile.
      * To win, you need one of the following cases to be true:
@@ -89,22 +104,72 @@ public class OkeyGame {
      * game and for some rare cases it may be erroneous but it will be enough
      * for this simplified version
      * Daib
+     *      * Done!!! But take a look please
+
      */
     public boolean didGameFinish() {
-        return false;
+        int fourMore = 0, threeMore = 0, fiveMore = 0, i;
+        boolean fstCond = threeMore >= 6 , scnCond = fiveMore >= 5, thrCond = threeMore >= 9; 
+
+        Player currentPlayer = players[currentPlayerIndex];
+            
+
+        for ( i = 0; i < currentPlayer.getTiles().length; i++)
+        {
+            System.out.println("hello" + i);
+            int[] longestArr = currentPlayer.calculateLongestChainPerTile();
+            int longest = 0;
+
+            for(int j = 0; j<longestArr.length; j++){
+                if (longestArr[j] > longest) {
+                    longest = longestArr[i]; 
+                }
+            }
+
+            if ( longest >= 3)
+            {
+                threeMore++;
+            }
+            else if ( longest >= 4)
+            {
+                fourMore++;
+            }
+            else if ( longest >= 5)
+            {
+                fiveMore++;
+            }
+        }
+
+        if ( fourMore >= 8)
+        {
+            return fstCond;
+        }
+        else
+        {
+            return ( scnCond && thrCond );
+        }
+        //return false;
     }
 
     /*
-
      * TODO: Pick a tile for the current computer player using one of the following:
      * - picking from the tiles array using getTopTile()
      * - picking from the lastDiscardedTile using getLastDiscardedTile()
      * You may choose randomly or consider if the discarded tile is useful for
      * the current status. Print whether computer picks from tiles or discarded ones.
      * Isa
+     * Done!!! But take a look please
      */
     public void pickTileForComputer() {
+        Tile topTile = tiles[103];
+        for(int i = last+1; i<tiles.length; i++ ){
+            topTile = tiles[last];
+        }
+        if(currentPlayerIndex!=0){
+            players[currentPlayerIndex].addTile(topTile);
+            System.out.println("Picked a tile from the tiles stack");
 
+        }
     }
 
     /*
@@ -117,7 +182,7 @@ public class OkeyGame {
      * Isa
      */
     public void discardTileForComputer() {
-
+        
     }
 
     /*
