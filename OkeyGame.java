@@ -87,7 +87,11 @@ public class OkeyGame {
         {
             tiles[i] = copy.get(i);
         } 
+<<<<<<< HEAD
         System.out.println(Arrays.toString(tiles));
+=======
+        // System.out.println(Arrays.toString(tiles));
+>>>>>>> main
 
        
     }
@@ -116,7 +120,10 @@ public class OkeyGame {
 
         for ( i = 0; i < currentPlayer.getTiles().length; i++)
         {
+<<<<<<< HEAD
             System.out.println("hello" + i);
+=======
+>>>>>>> main
             int[] longestArr = currentPlayer.calculateLongestChainPerTile();
             int longest = 0;
 
@@ -182,7 +189,27 @@ public class OkeyGame {
      * Isa
      */
     public void discardTileForComputer() {
+<<<<<<< HEAD
         
+=======
+        int playerNumber = currentPlayerIndex+1;
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        if(currentPlayerIndex!=0){
+            Player thisPlayer = players[currentPlayerIndex];
+            for(int i = 0; i<thisPlayer.numberOfTiles;i++){
+                arrayList.add(thisPlayer.findLongestChainOf(thisPlayer.getTiles()[i]));
+            }
+            int minimum = arrayList.get(0);
+        for (int i = 1; i < arrayList.size(); i++) {
+            if (minimum > arrayList.get(i))
+                minimum = arrayList.get(i);
+        }
+       
+        System.out.println("Tile "+ thisPlayer.getTiles()[minimum]+" has been removed for player "+ playerNumber);
+                players[currentPlayerIndex].getAndRemoveTile(minimum);
+
+        }
+>>>>>>> main
     }
 
     /*
@@ -192,7 +219,13 @@ public class OkeyGame {
      * Yusuf
      */
     public void discardTile(int tileIndex) {
+        if(currentPlayerIndex==0){
+            setLastDiscardedTile(tileIndex);
+            players[currentPlayerIndex].getAndRemoveTile(tileIndex);
+            getLastDiscardedTile();
+        
 
+        }
     }
 
     public void currentPlayerSortTilesColorFirst() {
@@ -229,6 +262,9 @@ public class OkeyGame {
         if(index >= 0 && index <= 3) {
             players[index] = new Player(name);
         }
+    }
+    public void setLastDiscardedTile(int i ){
+        lastDiscardedTile = players[currentPlayerIndex].getTiles()[i];
     }
 
 }

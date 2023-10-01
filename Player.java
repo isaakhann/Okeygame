@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Player {
     String playerName;
     Tile[] playerTiles;
@@ -116,8 +118,25 @@ public class Player {
      * Habil
      */
     public void sortTilesColorFirst() {
+        ArrayList<Tile> playerTiles = new ArrayList<>();
+        int n = playerTiles.size();
         
-    }
+        //Bubble sort for the color 
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                Tile tile1 = playerTiles.get(j);
+                Tile tile2 = playerTiles.get(j + 1);
+                // Compare the two tiles using compareToColorFirst method
+                if (tile1.compareToColorFirst(tile2) > 0) {
+                    // Swap the tiles if they are out of order
+                    playerTiles.set(j, tile2);
+                    playerTiles.set(j + 1, tile1);
+                }
+            }
+        }
+
+        //for print sorted list  for (Tile tile : playerTiles) { System.out.print(tile.toString() + " ");
+}
 
     /*
      * TODO: uses bubble sort to sort playerTiles in increasing value and color
@@ -131,6 +150,25 @@ public class Player {
      */
     public void sortTilesValueFirst() {
 
+        
+        ArrayList<Tile> playerTiles1 = new ArrayList<>();
+        int n = playerTiles1.size();
+        
+        //Bubble sort for the value
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                Tile tile1 = playerTiles1.get(j);
+                Tile tile2 = playerTiles1.get(j + 1);
+                // Compare the two tiles using compareToColorFirst method
+                if (tile1.compareToValueFirst(tile2) > 0) {
+                    // Swap the tiles if they are out of order
+                    playerTiles1.set(j, tile2);
+                    playerTiles1.set(j + 1, tile1);
+                }
+            }
+        }
+
+        //for print sorted list  for (Tile tile : playerTiles1) { System.out.print(tile.toString() + " ");}
     }
 
     public int findPositionOfTile(Tile t) {
