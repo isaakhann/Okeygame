@@ -63,7 +63,7 @@ public class Player {
         tilePosition = findPositionOfTile(t);
         for ( int i = tilePosition; i >= 0; i-- )
         {
-            if (playerTiles[i].canFormChainWith(t))
+            if (playerTiles[i].canFormChainWith(t)==1)
             {
                 longestChainColorFirst++;
             }
@@ -73,9 +73,9 @@ public class Player {
             }
         }
 
-        for ( int i = tilePosition + 2; playerTiles.length; i++)
+        for ( int i = tilePosition + 2; i< playerTiles.length; i++)
         {
-            if ( playerTiles[tilePosition].canFormChainWith(t))
+            if ( playerTiles[tilePosition].canFormChainWith(t)==1)
             {
                 longestChainColorFirst++;
             }
@@ -93,7 +93,7 @@ public class Player {
         tilePosition = findPositionOfTile(t);
         for ( int i = tilePosition; i >= 0; i-- )
         {
-            if (playerTiles[i].canFormChainWith(t))
+            if (playerTiles[i].canFormChainWith(t)==2)
             {
                 longestChainValueFirst++;
             }
@@ -103,9 +103,9 @@ public class Player {
             }
         }
 
-        for ( int i = tilePosition + 1; playerTiles.length; i++)
+        for ( int i = tilePosition + 1;i<  playerTiles.length; i++)
         {
-            if ( playerTiles[tilePosition].canFormChainWith(t))
+            if ( playerTiles[tilePosition].canFormChainWith(t)==2)
             {
                 longestChainValueFirst++;
             }
@@ -166,25 +166,25 @@ public class Player {
      * Habil
      */
     public void sortTilesColorFirst() {
-        ArrayList<Tile> playerTiles = new ArrayList<>();
-        int n = playerTiles.size();
-        
-        //Bubble sort for the color 
+        int n = numberOfTiles;
+        boolean swapped;
         for (int i = 0; i < n - 1; i++) {
+            swapped = false;
             for (int j = 0; j < n - i - 1; j++) {
-                Tile tile1 = playerTiles.get(j);
-                Tile tile2 = playerTiles.get(j + 1);
-                // Compare the two tiles using compareToColorFirst method
-                if (tile1.compareToColorFirst(tile2) > 0) {
-                    // Swap the tiles if they are out of order
-                    playerTiles.set(j, tile2);
-                    playerTiles.set(j + 1, tile1);
+                // Using compareToColorFirst method for comparison
+                if (playerTiles[j].compareToColorFirst(playerTiles[j + 1]) > 0) {
+                    // Swap playerTiles[j] and playerTiles[j + 1]
+                    Tile temp = playerTiles[j];
+                    playerTiles[j] = playerTiles[j + 1];
+                    playerTiles[j + 1] = temp;
+                    swapped = true;
                 }
             }
+            // If no two tiles were swapped by inner loop, then break
+            if (!swapped) {
+                break;
+            }
         }
-
-        //for print sorted list  for (Tile tile : playerTiles) { System.out.print(tile.toString() + " ");
-
     }
 
     /*
@@ -198,20 +198,23 @@ public class Player {
      * Habil
      */
     public void sortTilesValueFirst() {
-        ArrayList<Tile> playerTiles1 = new ArrayList<>();
-        int n = playerTiles1.size();
-        
-        //Bubble sort for the value
+           int n = numberOfTiles;
+        boolean swapped;
         for (int i = 0; i < n - 1; i++) {
+            swapped = false;
             for (int j = 0; j < n - i - 1; j++) {
-                Tile tile1 = playerTiles1.get(j);
-                Tile tile2 = playerTiles1.get(j + 1);
-                // Compare the two tiles using compareToColorFirst method
-                if (tile1.compareToValueFirst(tile2) > 0) {
-                    // Swap the tiles if they are out of order
-                    playerTiles1.set(j, tile2);
-                    playerTiles1.set(j + 1, tile1);
+                // Using compareToValueFirst method for comparison
+                if (playerTiles[j].compareToValueFirst(playerTiles[j + 1]) > 0) {
+                    // Swap playerTiles[j] and playerTiles[j + 1]
+                    Tile temp = playerTiles[j];
+                    playerTiles[j] = playerTiles[j + 1];
+                    playerTiles[j + 1] = temp;
+                    swapped = true;
                 }
+            }
+            // If no two tiles were swapped by inner loop, then break
+            if (!swapped) {
+                break;
             }
         }
 

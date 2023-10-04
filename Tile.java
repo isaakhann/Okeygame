@@ -27,57 +27,45 @@ public class Tile {
     }
 
     public int compareToColorFirst(Tile t) {
-        if(colorNameToInt() < t.colorNameToInt()) {
+        if (colorNameToInt() < t.colorNameToInt()) {
             return -1;
-        }
-        else if(colorNameToInt() > t.colorNameToInt()) {
+        } else if (colorNameToInt() > t.colorNameToInt()) {
             return 1;
-        }
-        else{
-             if(getValue() < t.getValue()) {
+        } else {
+            if (getValue() < t.getValue()) {
                 return -1;
-            }
-            else if(getValue() > t.getValue()) {
+            } else if (getValue() > t.getValue()) {
                 return 1;
-            }
-            else{
+            } else {
                 return 0;
             }
+        }
+    }
+    
+    // Make sure this function maps the colors to integers according to the order Y < B < R < K
+    private int colorNameToInt() {
+        switch (this.color) {
+            case 'Y': return 1;
+            case 'B': return 2;
+            case 'R': return 3;
+            case 'K': return 4;
+            default: return 0; // Invalid color
         }
     }
 
     public int compareToValueFirst(Tile t) {
-        if(getValue() < t.getValue()) {
+        if (getValue() < t.getValue()) {
             return -1;
-        }
-        else if(getValue() > t.getValue()) {
+        } else if (getValue() > t.getValue()) {
             return 1;
-        }
-        else{
-             if(colorNameToInt() < t.colorNameToInt()) {
+        } else {
+            if (colorNameToInt() < t.colorNameToInt()) {
                 return -1;
-            }
-            else if(colorNameToInt() > t.colorNameToInt()) {
+            } else if (colorNameToInt() > t.colorNameToInt()) {
                 return 1;
-            }
-            else{
+            } else {
                 return 0;
             }
-        }
-    }
-
-    public int colorNameToInt() {
-        if(color == 'Y') {
-            return 0;
-        }
-        else if(color == 'B') {
-            return 1;
-        }
-        else if(color == 'R') {
-            return 2;
-        }
-        else {
-            return 3;
         }
     }
 
