@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Random;
 
 public class OkeyGame {
 
@@ -107,48 +105,31 @@ public class OkeyGame {
      *      * Done!!! But take a look please
 
      */
-    public boolean didGameFinish() {
-        int fourMore = 0, threeMore = 0, fiveMore = 0, i;
-        boolean fstCond = threeMore >= 6 , scnCond = fiveMore >= 5, thrCond = threeMore >= 9; 
-
-        Player currentPlayer = players[currentPlayerIndex];
-            
-
-        for ( i = 0; i < currentPlayer.getTiles().length; i++)
-        {
-            int[] longestArr = currentPlayer.calculateLongestChainPerTile();
-            int longest = 0;
-
-            for(int j = 0; j<longestArr.length; j++){
-                if (longestArr[j] > longest) {
-                    longest = longestArr[i]; 
+        public boolean didGameFinish() {
+            int fourMore = 0, threeMore = 0, fiveMore = 0;
+        
+            Player currentPlayer = players[currentPlayerIndex];
+            int[] longestArr = currentPlayer.calculateLongestChainPerTile(); // Moved outside the loop
+        
+            for (int i = 0; i < longestArr.length; i++) {
+                int longest = longestArr[i];
+        
+                if (longest >= 5) {
+                    fiveMore++;
+                } else if (longest >= 4) {
+                    fourMore++;
+                } else if (longest >= 3) {
+                    threeMore++;
                 }
             }
+        
+            boolean fstCond = fourMore >= 8 && threeMore >= 6; // 8 or more tiles with chain >= 4 and 6 or more with chain >= 3
+            boolean sndCond = fiveMore >= 5 && threeMore >= 9; // 5 or more tiles with chain >= 5 and 9 or more with chain >= 3
+        
+            return fstCond || sndCond; // Player wins if either condition is met
+        
 
-            if ( longest >= 3)
-            {
-                threeMore++;
-            }
-            else if ( longest >= 4)
-            {
-                fourMore++;
-            }
-            else if ( longest >= 5)
-            {
-                fiveMore++;
-            }
-        }
-
-        if ( fourMore >= 8)
-        {
-            return fstCond;
-        }
-        else
-        {
-            return ( scnCond && thrCond );
-        }
-        //return false;
-    }
+}
 
     /*
      * TODO: Pick a tile for the current computer player using one of the following:
@@ -208,8 +189,8 @@ public class OkeyGame {
      */
     public void discardTile(int tileIndex) {
         if(currentPlayerIndex==0){
-            setLastDiscardedTile(tileIndex);
             players[currentPlayerIndex].getAndRemoveTile(tileIndex);
+            setLastDiscardedTile(tileIndex);
             getLastDiscardedTile();
         
 

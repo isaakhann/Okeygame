@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 public class Player {
     String playerName;
@@ -137,7 +136,8 @@ public class Player {
         }
         numberOfTiles--;
 
-        return Tile_to_delete;     }
+        return Tile_to_delete;    
+     }
 
     /*
      * TODO: adds the given tile at the end of playerTiles array, should also
@@ -146,7 +146,7 @@ public class Player {
      * Anil
      */
     public void addTile(Tile t) {
-        if (numberOfTiles <= 15) {
+        if (numberOfTiles < 15) {
 
             playerTiles[numberOfTiles] = t;
             
