@@ -87,11 +87,7 @@ public class OkeyGame {
         {
             tiles[i] = copy.get(i);
         } 
-<<<<<<< HEAD
         System.out.println(Arrays.toString(tiles));
-=======
-        // System.out.println(Arrays.toString(tiles));
->>>>>>> main
 
        
     }
@@ -120,10 +116,6 @@ public class OkeyGame {
 
         for ( i = 0; i < currentPlayer.getTiles().length; i++)
         {
-<<<<<<< HEAD
-            System.out.println("hello" + i);
-=======
->>>>>>> main
             int[] longestArr = currentPlayer.calculateLongestChainPerTile();
             int longest = 0;
 
@@ -189,9 +181,6 @@ public class OkeyGame {
      * Isa
      */
     public void discardTileForComputer() {
-<<<<<<< HEAD
-        
-=======
         int playerNumber = currentPlayerIndex+1;
         ArrayList<Integer> arrayList = new ArrayList<>();
         if(currentPlayerIndex!=0){
@@ -209,7 +198,6 @@ public class OkeyGame {
                 players[currentPlayerIndex].getAndRemoveTile(minimum);
 
         }
->>>>>>> main
     }
 
     /*

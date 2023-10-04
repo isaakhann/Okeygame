@@ -56,16 +56,64 @@ public class Player {
         int tilePosition;
 
         sortTilesColorFirst();
-        tilePosition = findPositionOfTile(t);
 
         // TODO: find the longest chain starting from tilePosition going left and right
+
         int longestChainColorFirst = 0;
-       
+        tilePosition = findPositionOfTile(t);
+        for ( int i = tilePosition; i >= 0; i-- )
+        {
+            if (playerTiles[i].canFormChainWith(t))
+            {
+                longestChainColorFirst++;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        for ( int i = tilePosition + 2; playerTiles.length; i++)
+        {
+            if ( playerTiles[tilePosition].canFormChainWith(t))
+            {
+                longestChainColorFirst++;
+            }
+            else
+            {
+                break;
+            }
+        }
+
         sortTilesValueFirst();
         tilePosition = findPositionOfTile(t);
         
         // TODO: find the longest chain starting from tilePosition going left and right
         int longestChainValueFirst = 0;
+        tilePosition = findPositionOfTile(t);
+        for ( int i = tilePosition; i >= 0; i-- )
+        {
+            if (playerTiles[i].canFormChainWith(t))
+            {
+                longestChainValueFirst++;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        for ( int i = tilePosition + 1; playerTiles.length; i++)
+        {
+            if ( playerTiles[tilePosition].canFormChainWith(t))
+            {
+                longestChainValueFirst++;
+            }
+            else
+            {
+                break;
+            }
+        }
 
 
         if(longestChainColorFirst > longestChainValueFirst) {
@@ -136,7 +184,8 @@ public class Player {
         }
 
         //for print sorted list  for (Tile tile : playerTiles) { System.out.print(tile.toString() + " ");
-}
+
+    }
 
     /*
      * TODO: uses bubble sort to sort playerTiles in increasing value and color
@@ -149,8 +198,6 @@ public class Player {
      * Habil
      */
     public void sortTilesValueFirst() {
-
-        
         ArrayList<Tile> playerTiles1 = new ArrayList<>();
         int n = playerTiles1.size();
         
